@@ -17,6 +17,6 @@ public class Bullets : MonoBehaviour
     void Update()
     {
         lifeTimer -= Time.deltaTime;
-        if (lifeTimer <= 0f) gameObject.SetActive(false);
+        if (lifeTimer <= 0f) Destroy(gameObject);
     }
 }
