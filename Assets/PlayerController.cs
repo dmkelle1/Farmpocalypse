@@ -15,8 +15,7 @@ public class PlayerController : MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
 
-    public Camera cam;
-    Vector2 mousePos;
+   
 
     public Transform player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -59,14 +58,6 @@ public class PlayerController : MonoBehaviour
             dashCoolCounter -= Time.deltaTime;
         }
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector2 direction = mousePos - rb.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
-
-        Vector3 newPos = player.position;
-        newPos.z = transform.position.z;  // keep camera z fixed (for 2D)
-        transform.position = newPos;
+        
     }
 }
