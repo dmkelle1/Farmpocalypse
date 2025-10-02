@@ -3,11 +3,16 @@ using UnityEngine;
 public class Bullets : MonoBehaviour
 {
     public float lifeTime = 2f;
-    public int damage = 1;
+    private float _damage = 100;
     float lifeTimer;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+        EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(_damage);
+        }
     }
 
     private void OnEnable()
