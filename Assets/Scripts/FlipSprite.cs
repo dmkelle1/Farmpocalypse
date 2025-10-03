@@ -30,7 +30,7 @@ public class FlipSprite : MonoBehaviour
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
 
-        Debug.Log(gameObject.name + " rotation = " + difference.ToString());
+        //Debug.Log(gameObject.name + " rotation = " + difference.ToString());
 
         if (flipX)
         {
