@@ -69,6 +69,7 @@ public class EnemyScript : MonoBehaviour
         if (_health <= 0)
         {
             Destroy(gameObject);
+            ScoreManager.Instance.scoreIncrease();
         }
     }
 }
