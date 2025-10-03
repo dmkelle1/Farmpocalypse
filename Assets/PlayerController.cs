@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -15,13 +16,16 @@ public class PlayerController : MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
 
-   
+    private bool isDashing;
+
+    private SpriteRenderer spriteRenderer;
 
     public Transform player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         activeMoveSpeed = moveSpeed;
     }
 
@@ -37,6 +41,14 @@ public class PlayerController : MonoBehaviour
         {
             if (dashCoolCounter <= 0 && dashCounter <= 0)
             {
+                isDashing = true;
+                if (isDashing == true)
+                {
+                    //change alpha value down some
+                    UnityEngine.Color color = spriteRenderer.color;
+                    color.a = 0.75f;
+                    spriteRenderer.color = color;
+                }
                 activeMoveSpeed = dashSpeed;
                 dashCounter = dashLength;
             }
@@ -45,9 +57,16 @@ public class PlayerController : MonoBehaviour
         if (dashCounter > 0)
         {
             dashCounter -= Time.deltaTime;
-
+            
             if (dashCounter <= 0)
             {
+                isDashing = false;
+                if (isDashing == false)
+                {
+                    UnityEngine.Color color = spriteRenderer.color;
+                    color.a = 1f;
+                    spriteRenderer.color = color;
+                }
                 activeMoveSpeed = moveSpeed;
                 dashCoolCounter = dashCooldown;
             }

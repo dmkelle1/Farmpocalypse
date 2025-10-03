@@ -62,7 +62,7 @@ public class FlipSprite : MonoBehaviour
                     alterPosEvent?.Invoke();
                 }
             }
-            // mouse is on left side
+             //mouse is on left side
             if (difference.x >= 0 && facingDown)
             {
                 //flip sprite to face left
