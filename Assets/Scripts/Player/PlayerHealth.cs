@@ -16,6 +16,11 @@ public class PlayerHealth : MonoBehaviour
     {
         Health -= damage;
         hBM.SetHealth(Health);
+        if(Health <= 0)
+        {
+            GameOverScript gos = GameObject.FindGameObjectWithTag("Canvas").GetComponent<GameOverScript>();
+            gos.EndGame();
+        }
     }
 
     public void Heal(float heal)
