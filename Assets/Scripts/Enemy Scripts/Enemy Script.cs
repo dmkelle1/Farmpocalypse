@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -18,6 +19,15 @@ public class EnemyScript : MonoBehaviour
 
     public Animator animator;
     private bool abovePlayer;
+
+    private float eXp = 10;
+
+    public GameObject healDrop;
+
+    public ParticleSystem explosionParticle;
+
+    public float defenseBuff = 0f;
+    public float speedBuff = 0f;
 
     private void Awake()
     {
@@ -51,6 +61,23 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (explosionParticle != null)
+        {
+            explosionParticle.transform.parent = null;
+            explosionParticle.Play();
+            Destroy(explosionParticle.gameObject, explosionParticle.main.duration + 1);
+        }
+        DropSpawn(); 
+        ScoreManager.Instance.scoreIncrease();
+        if (_target)
+        {
+            PlayerExp exp = _target.GetComponent<PlayerExp>();
+            exp.ExpUp(eXp);
+        }
+    }
+
     private void IsPlayerAbove() //determines if the cow is above or below the player (next to counts as above)
     {
         if (_target.transform.position.y >= transform.position.y)
@@ -69,7 +96,15 @@ public class EnemyScript : MonoBehaviour
         if (_health <= 0)
         {
             Destroy(gameObject);
-            ScoreManager.Instance.scoreIncrease();
+        }
+    }
+
+    public void DropSpawn()
+    {
+        int chance = Random.Range(1, 100);
+        if (chance == 1)
+        {
+            Instantiate(healDrop, transform.position, Quaternion.identity);
         }
     }
 }

@@ -51,4 +51,12 @@ public class EnemySpawner : MonoBehaviour
         }
         
     }
+
+    public void spawnIncrease()
+    {
+        if (maxSpawnTime > 1)
+        {
+            maxSpawnTime -= 1;
+        }
+    }
 }

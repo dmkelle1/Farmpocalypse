@@ -1,5 +1,6 @@
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,12 +22,15 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public Transform player;
+
+    public Slider dashBar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         activeMoveSpeed = moveSpeed;
+        dashBar.maxValue = dashCooldown;
     }
 
     // Update is called once per frame
@@ -51,6 +55,7 @@ public class PlayerController : MonoBehaviour
                 }
                 activeMoveSpeed = dashSpeed;
                 dashCounter = dashLength;
+                dashBar.value = 0;
             }
         }
 
@@ -75,6 +80,7 @@ public class PlayerController : MonoBehaviour
         if (dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
+            dashBar.value += Time.deltaTime;
         }
 
         
