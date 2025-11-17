@@ -1,11 +1,13 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Bullets : MonoBehaviour
 {
+    public PlayerStats playerStats;
     public float lifeTime = 2f;
     private float _damage = 100;
     float lifeTimer;
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
         EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();

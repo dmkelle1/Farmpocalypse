@@ -8,6 +8,7 @@ public class PlayerExp : MonoBehaviour
     [SerializeField]
     private float maxExp = 100;
     public int level = 1;
+    public UpgradeUI upgradeUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerExp : MonoBehaviour
             level += 1;
             currentExp -= maxExp;
             maxExp += 5;
+            upgradeUI.ShowUpgradeChoices();
             EnemySpawner spawn = GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemySpawner>();
             spawn.spawnIncrease();
         }
