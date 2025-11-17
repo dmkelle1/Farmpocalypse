@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -13,10 +14,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float _thresholdDistance = 1f;
     private Vector2 _player;
+    public int levelSpawn;
 
     void Start()
     {
         SetTimeUntilSpawn();
+        levelSpawn = 1;
     }
 
     void Update()
@@ -24,7 +27,12 @@ public class EnemySpawner : MonoBehaviour
         _SpawnTime -= Time.deltaTime;
         if (_SpawnTime <= 0)
         {
-            spawnEnemy();
+            int templvl = levelSpawn;
+            while (templvl > 0) 
+            {
+                spawnEnemy();
+                templvl--;
+            }
         }
     }
 
@@ -50,5 +58,10 @@ public class EnemySpawner : MonoBehaviour
             distance = Vector2.Distance(_player, spawnPosition);
         }
         
+    }
+
+    public void spawnIncrease()
+    {
+        levelSpawn++;
     }
 }
