@@ -21,12 +21,16 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public Transform player;
+
+    public int maxHealth = 5;
+    int currentHealth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         activeMoveSpeed = moveSpeed;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
