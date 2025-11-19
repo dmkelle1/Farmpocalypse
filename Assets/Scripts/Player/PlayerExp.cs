@@ -17,7 +17,6 @@ public class PlayerExp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("LEVEL: " + level);
         expBar.value = currentExp;
         expBar.maxValue = maxExp;
         if (currentExp >= maxExp)
@@ -27,6 +26,7 @@ public class PlayerExp : MonoBehaviour
             maxExp += 5;
             EnemySpawner spawn = GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemySpawner>();
             spawn.spawnIncrease();
+            ScoreManager.Instance.scoreIncrease();
         }
     }
 

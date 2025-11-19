@@ -13,25 +13,21 @@ public class GameOverScript : MonoBehaviour
         gameOverScreen.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (gameOver) 
-        { 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Application.Quit();
-            }
-            else if(Input.GetKeyDown(KeyCode.R))
-            {
-                string sceneName = SceneManager.GetActiveScene().name;
-                SceneManager.LoadScene(sceneName);
-            }
-        }
-    }
     public void EndGame()
     {
         gameOver = true;
         Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
+    }
+
+    public void RetryButton()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void TitleButton()
+    {
+        SceneManager.LoadScene("Title Scene");
     }
 }
