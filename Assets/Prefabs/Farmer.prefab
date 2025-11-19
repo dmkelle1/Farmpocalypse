@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177d0aec1f305094bb03cc66c3545220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  ps: {fileID: 1955934177936586800}
   hBM: {fileID: 0}
 --- !u!114 &4664194958353854633
 MonoBehaviour:
@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbef17610625f24dbfd4f8234ec0c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  rb: {fileID: 0}
+  ps: {fileID: 1955934177936586800}
+  rb: {fileID: 2632086248493274788}
   dashSpeed: 4
   dashLength: 0.3
   dashCooldown: 1
@@ -281,9 +281,12 @@ MonoBehaviour:
   level: 1
   damage: 100
   maxHealth: 100
-  moveSpeed: 4
-  damagePerUpgrade: 1
-  healthPerUpgrade: 20
+  moveSpeed: 2
+  baseDamage: 100
+  baseSpeed: 2
+  baseHealth: 100
+  damagePerUpgrade: 50
+  healthPerUpgrade: 25
   speedPerUpgrade: 0.5
 --- !u!1 &8326200433214795917
 GameObject:

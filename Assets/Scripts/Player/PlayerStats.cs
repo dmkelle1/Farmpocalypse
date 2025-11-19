@@ -4,10 +4,13 @@ public class PlayerStats : MonoBehaviour
 {
     public int level = 1;
 
-    public float damage = 1f;
-    public float maxHealth = 100f;
-    public float moveSpeed = 2f;
+    public float damage;
+    public float maxHealth;
+    public float moveSpeed;
 
+    public float baseDamage = 1f;
+    public float baseSpeed = 1f;
+    public float baseHealth = 1f;
 
     public float damagePerUpgrade = 1f;
     public float healthPerUpgrade = 20f;
@@ -15,7 +18,9 @@ public class PlayerStats : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        damage = baseDamage;
+        moveSpeed = baseSpeed;
+        maxHealth = baseHealth;
     }
 
     // Update is called once per frame
