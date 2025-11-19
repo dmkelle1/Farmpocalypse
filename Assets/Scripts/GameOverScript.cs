@@ -3,19 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour
 {
-    private bool gameOver;
     [SerializeField]
     private GameObject gameOverScreen;
     void Start()
     {
         Time.timeScale = 1f;
-        gameOver = false;
         gameOverScreen.SetActive(false);
     }
 
     public void EndGame()
     {
-        gameOver = true;
         Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
     }

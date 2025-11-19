@@ -198,4 +198,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 2
-  damage: 100
+  ps: {fileID: 1955934177936586800, guid: b3162efe02271a443a55a43e43803ae2, type: 3}
