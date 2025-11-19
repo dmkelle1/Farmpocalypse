@@ -6,34 +6,35 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed;
     private Rigidbody2D _rb;
     private Transform _target;
     private Vector2 _moveDirection;
 
+    [Header("Stats")]
     [SerializeField]
     private float _defense;
+    [SerializeField]
+    private float _speed;
     private float _maxHealth = 100;
     private float _health;
 
+    [Header("References")]
     public Animator animator;
-    private bool abovePlayer;
-
-    private float eXp = 10;
-
     public GameObject healDrop;
-
     public ParticleSystem explosionParticle;
 
-    public float defenseBuff = 0f;
-    public float speedBuff = 0f;
+    private float eXp = 10;
+    private bool abovePlayer;
+    private bool dead = false;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _rb.freezeRotation = true;
-        animator = GetComponent<Animator>();
+        if (!animator)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     private void Start()
@@ -50,52 +51,36 @@ public class EnemyScript : MonoBehaviour
             _moveDirection = direction;
         }
         IsPlayerAbove();
-        animator.SetBool("isPlayerAbove", abovePlayer); //Sets animation to front or back depending on player position relative to enemy
+        if (animator) 
+        {
+            animator.SetBool("isPlayerAbove", abovePlayer);
+        }
     }
 
     private void FixedUpdate()
     {
         if (_target)
         {
-            _rb.linearVelocity = new Vector2(_moveDirection.x, _moveDirection.y) * _speed;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (explosionParticle != null)
-        {
-            explosionParticle.transform.parent = null;
-            explosionParticle.Play();
-            Destroy(explosionParticle.gameObject, explosionParticle.main.duration + 1);
-        }
-        DropSpawn(); 
-        ScoreManager.Instance.scoreIncrease();
-        if (_target)
-        {
-            PlayerExp exp = _target.GetComponent<PlayerExp>();
-            exp.ExpUp(eXp);
+            _rb.linearVelocity = (_target.position - transform.position).normalized;
         }
     }
 
     private void IsPlayerAbove() //determines if the cow is above or below the player (next to counts as above)
     {
-        if (_target.transform.position.y >= transform.position.y)
+        if (_target)
         {
-            abovePlayer = true;
-        }
-        else
-        {
-            abovePlayer = false;
+            abovePlayer = _target.position.y >= transform.position.y;
         }
     }
 
     public void TakeDamage(float damage)
     {
-        _health -= (damage-_defense);
+        if (dead) return;
+        _health -= Mathf.Max(damage-_defense, 0);
         if (_health <= 0)
         {
-            Destroy(gameObject);
+            dead = true;
+            StartCoroutine(HandleDeath());
         }
     }
 
@@ -106,5 +91,38 @@ public class EnemyScript : MonoBehaviour
         {
             Instantiate(healDrop, transform.position, Quaternion.identity);
         }
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        if (animator) animator.enabled = false;
+        if (_rb) _rb.simulated = false;
+        yield return null;
+        yield return null;
+        yield return null;
+
+        if (explosionParticle != null)
+        {
+            var ps = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            ps.Play();
+            Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax + 0.5f);
+        }
+
+        if (_target)
+        {
+            var pxp = _target.GetComponent<PlayerExp>();
+            if (pxp)
+            {
+                pxp.ExpUp(eXp);
+            }
+        }
+
+        int chance = Random.Range(1, 101);
+        if(chance == 1 && healDrop != null)
+        {
+            Instantiate(healDrop, transform.position, Quaternion.identity);
+        }
+
+        Destroy(gameObject);
     }
 }

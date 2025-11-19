@@ -5,27 +5,21 @@ using System.Xml.Serialization;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
-    public TMP_Text killsText;
+    public TMP_Text levelText;
 
-    int kills = 0;
+    int level = 1;
     private void Awake()
     {
         Instance = this;
     }
     void Start()
     {
-        killsText.text = "KILLS: " + kills.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        levelText.text = "Level: " + level.ToString();
     }
 
     public void scoreIncrease()
     {
-        kills += 1;
-        killsText.text = "KILLS: " + kills.ToString();
+        level += 1;
+        levelText.text = "Level: " + level.ToString();
     }
 }
