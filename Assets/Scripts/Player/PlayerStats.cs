@@ -4,7 +4,7 @@ public class PlayerStats : MonoBehaviour
 {
     public int level = 1;
 
-    public float damage = 100f;
+    public float damage = 1f;
     public float maxHealth = 100f;
     public float moveSpeed = 4f;
 
