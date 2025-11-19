@@ -5,7 +5,7 @@ public class Bullets : MonoBehaviour
 {
     public PlayerStats playerStats;
     public float lifeTime = 2f;
-    private float _damage = 100;
+    //private float _damage = 100;
     float lifeTimer;
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,7 +13,7 @@ public class Bullets : MonoBehaviour
         EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
         if (enemy != null)
         {
-            enemy.TakeDamage(_damage);
+            enemy.TakeDamage(playerStats.damage);
             Destroy(gameObject);
         }
     }

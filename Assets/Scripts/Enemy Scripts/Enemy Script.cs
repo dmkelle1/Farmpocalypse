@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour
     private float _defense;
     [SerializeField]
     private float _speed;
-    private float _maxHealth = 100;
+    private float _maxHealth = 3;
     private float _health;
 
     [Header("References")]
