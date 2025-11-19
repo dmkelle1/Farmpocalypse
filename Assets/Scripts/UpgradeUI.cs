@@ -14,20 +14,12 @@ public class UpgradeUI : MonoBehaviour
     void Start()
     {
         upgradePanel.SetActive(false);
-
-        damageButton.onClick.AddListener(OnDamageChosen);
-        //healthButton.onClick.AddListener(OnHealthChosen);
-        speedButton.onClick.AddListener(OnSpeedChosen);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            // Call the function for the action you want to perform
-            ShowUpgradeChoices();
-        }
+        
     }
 
     public void ShowUpgradeChoices()
@@ -43,15 +35,21 @@ public class UpgradeUI : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void OnDamageChosen()
+    public void OnDamageChosen()
     {
         playerStats.UpgradeDamage();
         CloseUpgradeChoices();
     }
 
-    private void OnSpeedChosen()
+    public void OnSpeedChosen()
     {
         playerStats.UpgradeSpeed();
+        CloseUpgradeChoices();
+    }
+
+    public void OnHealthChosen()
+    {
+        playerStats.UpgradeHealth();
         CloseUpgradeChoices();
     }
 }

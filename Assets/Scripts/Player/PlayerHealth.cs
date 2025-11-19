@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float MaxHealth = 100;
+    public PlayerStats ps;
     private float Health;
     [SerializeField]
     private HealthBarManager hBM;
     void Start()
     {
-        hBM.SetMaxHealth(MaxHealth);
-        Health = MaxHealth;
+        hBM.SetMaxHealth(ps.maxHealth);
+        Health = ps.maxHealth;
     }
 
     public void TakeDamage(float damage)
@@ -26,9 +26,9 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(float heal)
     {
         Health += heal;
-        if (Health > MaxHealth)
+        if (Health > ps.maxHealth)
         {
-            Health = MaxHealth;
+            Health = ps.maxHealth;
         }
         hBM.SetHealth(Health);
     }

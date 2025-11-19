@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
 
     public float damage = 1f;
     public float maxHealth = 100f;
-    public float moveSpeed = 4f;
+    public float moveSpeed = 2f;
 
 
     public float damagePerUpgrade = 1f;
@@ -34,5 +34,11 @@ public class PlayerStats : MonoBehaviour
     {
         moveSpeed += speedPerUpgrade;
         Debug.Log("Move speed upgraded to: " + moveSpeed);
+    }
+
+    public void UpgradeHealth()
+    {
+        maxHealth += healthPerUpgrade;
+        Debug.Log("Max heath upgraded to: " + maxHealth);
     }
 }

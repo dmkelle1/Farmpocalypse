@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float moveSpeed;
+    public PlayerStats ps;
+    //public float moveSpeed;
     private Vector2 movement;
     public Rigidbody2D rb;
 
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        activeMoveSpeed = moveSpeed;
+        activeMoveSpeed = ps.moveSpeed;
         dashBar.maxValue = dashCooldown;
     }
 
@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         movement.Normalize();
-        movement.x = Input.GetAxisRaw("Horizontal") * moveSpeed;
-        movement.y = Input.GetAxisRaw("Vertical") * moveSpeed;
+        movement.x = Input.GetAxisRaw("Horizontal") * ps.moveSpeed;
+        movement.y = Input.GetAxisRaw("Vertical") * ps.moveSpeed;
         rb.linearVelocity = movement * activeMoveSpeed;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
                     color.a = 1f;
                     spriteRenderer.color = color;
                 }
-                activeMoveSpeed = moveSpeed;
+                activeMoveSpeed = ps.moveSpeed;
                 dashCoolCounter = dashCooldown;
             }
         }
