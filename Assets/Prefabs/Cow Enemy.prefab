@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.88, y: 1.02, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6454844437702510843}
@@ -199,13 +199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9720efad70dd47f4b97da48a08c21748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
   _defense: 50
+  _speed: 2
   animator: {fileID: 0}
   healDrop: {fileID: 4701751077097513061, guid: f7b466a1b8d60554f93f2413ca66086f, type: 3}
   explosionParticle: {fileID: 3898812578917255845, guid: 099f34cb2004a6947afc1615c89bb06c, type: 3}
-  defenseBuff: 0
-  speedBuff: 0
 --- !u!1 &7404418390141256935
 GameObject:
   m_ObjectHideFlags: 0
