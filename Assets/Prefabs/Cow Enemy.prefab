@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1776653415564564455}
   - component: {fileID: 2791070830127168253}
   - component: {fileID: 8910654119921253067}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cow Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 8482934083421312950}
   - component: {fileID: 5745217863147006441}
   - component: {fileID: 4386597912978108290}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
