@@ -60,6 +60,14 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
+    //TODO create SortEnemies method
+    //Look through all enemies that have been spawned
+    //Sort them based on their Y position in relationship with the Player. 
+    //This may require different order if they are above or below the player. 
+    //If a Sprite's Sorting order is higher, it will appear in front of others. 
+    //For reference -> https://discussions.unity.com/t/how-to-sort-sprites-of-different-objects-on-the-same-layer-ignoring-y-axis-in-a-top-down-game/1591531
+    //This should be called every frame.
+
     public void spawnIncrease()
     {
         levelSpawn++;

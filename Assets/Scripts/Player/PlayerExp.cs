@@ -24,7 +24,7 @@ public class PlayerExp : MonoBehaviour
         {
             level += 1;
             currentExp -= maxExp;
-            maxExp += 5;
+            maxExp += 50;
             upgradeUI.ShowUpgradeChoices();
             EnemySpawner spawn = GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemySpawner>();
             spawn.spawnIncrease();
