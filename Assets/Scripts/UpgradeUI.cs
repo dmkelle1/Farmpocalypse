@@ -8,18 +8,24 @@ public class UpgradeUI : MonoBehaviour
     public Button damageButton;
     public Button healthButton;
     public Button speedButton;
+    public Button confirmButton;
+
+    private System.Action pendingUpgrade;
 
     public PlayerStats playerStats;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         upgradePanel.SetActive(false);
+        confirmButton.gameObject.SetActive(false);
+        confirmButton.onClick.AddListener(OnConfirmClicked);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnEnable()
     {
-        
+        //reset scales 
+
     }
 
     public void ShowUpgradeChoices()
@@ -33,23 +39,43 @@ public class UpgradeUI : MonoBehaviour
     {
         upgradePanel.SetActive(false);
         Time.timeScale = 1f;
+
+        confirmButton.gameObject.SetActive(false);
+        pendingUpgrade = null;
     }
 
     public void OnDamageChosen()
     {
-        playerStats.UpgradeDamage();
-        CloseUpgradeChoices();
+        pendingUpgrade = () => playerStats.UpgradeDamage();
+        ShowConfirmButton();
     }
 
     public void OnSpeedChosen()
     {
-        playerStats.UpgradeSpeed();
-        CloseUpgradeChoices();
+        pendingUpgrade = () => playerStats.UpgradeSpeed();
+        ShowConfirmButton();
     }
 
     public void OnHealthChosen()
     {
-        playerStats.UpgradeHealth();
+        pendingUpgrade = () => playerStats.UpgradeHealth();
+        ShowConfirmButton();
+    }
+
+    private void ShowConfirmButton()
+    {
+        confirmButton.gameObject.SetActive(true);
+    }
+
+    private void OnConfirmClicked()
+    {
+        if (pendingUpgrade != null)
+        {
+            pendingUpgrade.Invoke();
+            pendingUpgrade = null;
+        }
+
+        confirmButton.gameObject.SetActive(false);
         CloseUpgradeChoices();
     }
 }
