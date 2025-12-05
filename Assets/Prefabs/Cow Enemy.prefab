@@ -146,7 +146,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7029192484602826754}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   healDrop: {fileID: 4701751077097513061, guid: f7b466a1b8d60554f93f2413ca66086f, type: 3}
   explosionParticle: {fileID: 3898812578917255845, guid: 099f34cb2004a6947afc1615c89bb06c, type: 3}
+  gos: {fileID: 0}
 --- !u!1 &7404418390141256935
 GameObject:
   m_ObjectHideFlags: 0

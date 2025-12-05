@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class EnemyScript : MonoBehaviour
     private bool abovePlayer;
     private bool dead = false;
 
+    public GameObject gos;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -98,8 +100,6 @@ public class EnemyScript : MonoBehaviour
         if (animator) animator.enabled = false;
         if (_rb) _rb.simulated = false;
         yield return null;
-        yield return null;
-        yield return null;
 
         if (explosionParticle != null)
         {
@@ -122,6 +122,9 @@ public class EnemyScript : MonoBehaviour
         {
             Instantiate(healDrop, transform.position, Quaternion.identity);
         }
+
+        GameOverScript ks = GameObject.FindGameObjectWithTag("Canvas").GetComponent<GameOverScript>();
+        ks.KillsIncrease();
 
         Destroy(gameObject);
     }
